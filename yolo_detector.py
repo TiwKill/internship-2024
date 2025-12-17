@@ -8,7 +8,7 @@ model = YOLO("yolov8n.pt")
 # config
 cat_class_id = 15
 box_color = (255, 0, 0)
-name_text = "Vanas-Clicknext-Internship-2024"
+name_text = "Piyawat-Clicknext-Internship-2024"
 
 track_points = []
 
@@ -56,7 +56,7 @@ def detect_object(frame):
     """Detect object from image frame"""
 
     # Detect object from image frame
-    results = model(frame, conf=0.5)
+    results = model(frame, conf=0.37)
 
     for result in results:
         frame = draw_boxes(frame, result.boxes)
@@ -80,7 +80,7 @@ if __name__ == "__main__":
             frame_result = detect_object(frame)
 
             # Draw name text
-            test_size, _ = cv2.getTextSize(name_text, cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
+            test_size, _ = cv2.getTextSize(name_text, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
             x_text = frame_result.shape[1] - test_size[0] - 10
             y_text = 30
 
@@ -89,7 +89,7 @@ if __name__ == "__main__":
                 name_text, 
                 (x_text, y_text), 
                 cv2.FONT_HERSHEY_SIMPLEX, 
-                1, 
+                0.7, 
                 box_color, 
                 2
             )
