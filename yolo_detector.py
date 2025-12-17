@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
     while cap.isOpened():
         # Read image frame
-        ret, frame = cap.read_frame()
+        ret, frame = cap.read()
 
         if not ret:
             break
@@ -80,7 +80,7 @@ if __name__ == "__main__":
             frame_result = detect_object(frame)
 
             # Draw name text
-            test_size, _ = cv.getTextSize(name_text, cv.FONT_HERSHEY_SIMPLEX, 1, 2)
+            test_size, _ = cv2.getTextSize(name_text, cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
             x_text = frame_result.shape[1] - test_size[0] - 10
             y_text = 30
 
@@ -88,16 +88,16 @@ if __name__ == "__main__":
                 frame_result, 
                 name_text, 
                 (x_text, y_text), 
-                cv.FONT_HERSHEY_SIMPLEX, 
+                cv2.FONT_HERSHEY_SIMPLEX, 
                 1, 
                 box_color, 
                 2
             )
 
             # Show result
-            cv.namedWindow("Video", cv.WINDOW_NORMAL)
-            cv.imshow("Video", frame_result)
-            cv.waitKey(30)
+            cv2.namedWindow("Video", cv2.WINDOW_NORMAL)
+            cv2.imshow("Video", frame_result)
+            cv2.waitKey(30)
 
         else:
             break
